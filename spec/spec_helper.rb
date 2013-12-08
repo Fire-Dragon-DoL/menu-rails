@@ -2,7 +2,8 @@ $LOAD_PATH << File.expand_path("../../lib", __FILE__)
 
 require 'bundler/setup'
 require 'combustion'
-require 'capybara/spec'
+require 'headless'
+require 'capybara/rspec'
 
 Combustion.initialize! :action_controller,
                        :action_view
