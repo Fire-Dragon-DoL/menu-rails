@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'menu/rails/version'
+require 'menu-rails/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "menu-rails"
-  spec.version       = Menu::Rails::VERSION
+  spec.version       = MenuRails::VERSION
   spec.authors       = ["Fire-Dragon-DoL"]
   spec.email         = ["francesco.belladonna@gmail.com"]
   spec.description   = %q{This gem provide a set of helpers and methods that allow to easily generate a menu and identify the currently active link item}

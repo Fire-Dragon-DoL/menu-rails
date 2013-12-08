@@ -1,4 +1,4 @@
-# Menu::Rails
+# menu-rails
 
 TODO: Write a gem description
 
