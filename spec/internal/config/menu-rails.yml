@@ -1,0 +1,35 @@
+menu_rails:
+  - text: Home
+  # app_config:
+  # client:
+  #   menu:
+  #     - text:       Home
+  #       class_name: 'PagesController'
+  #       can:        :read
+  #       url:        :root_path
+  #     - text:       About
+  #       class_name: 'PagesController'
+  #       can:        :read
+  #       url:        :root_path
+  #     - text:       Archives
+  #       class_name: 'PagesController'
+  #       can:        :read
+  #       url:        :root_path
+  #     - text:       Dropdown
+  #       class_name: 'PagesController'
+  #       can:        :read
+  #       url:        :root_path
+  #     - text:       Templates
+  #       class_name: 'PagesController'
+  #       can:        :read
+  #       url:        :root_path
+  #     - text:       Contact
+  #       class_name: 'PagesController'
+  #       can:        :read
+  #       url:        :root_path
+  #       last:       true
+  # admin:
+  #   menu:
+  #     - text:       Home
+  #       class_name: 'Admin::PagesController'
+  #       can:        :read

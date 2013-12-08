@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "capybara",         "~> 2.2.0"
   spec.add_development_dependency "capybara-webkit",  "~> 1.1.0"
   spec.add_development_dependency "headless",         "~> 1.0.1"
+  spec.add_development_dependency "factory_girl",     "~> 4.3.0"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "rake"
 end
