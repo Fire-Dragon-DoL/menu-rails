@@ -26,6 +26,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec",            "~> 2.14.0"
   spec.add_development_dependency "combustion",       "~> 0.5.1"
   spec.add_development_dependency "faker",            "~> 1.2.0"
+  spec.add_development_dependency "capybara",         "~> 2.2.0"
+  spec.add_development_dependency "capybara-webkit",  "~> 1.1.0"
+  spec.add_development_dependency "headless",         "~> 1.0.1"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "rake"
 end
