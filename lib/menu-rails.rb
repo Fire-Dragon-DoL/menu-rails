@@ -1,5 +1,8 @@
 require "menu-rails/version"
 
+module MenuRails
+end
+
 # load Rails/Railtie
 begin
   require 'rails'
