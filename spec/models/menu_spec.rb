@@ -7,6 +7,11 @@ describe MenuRails::Menu do
     -> {FactoryGirl.build(:menu)}.should_not raise_error
   end
 
-  it { menu.should respond_to(:id) }
+  it do
+    menu.should respond_to( :id,
+                            :items )
+  end
+
+  it { menu.items.should respond_to(:size, :each) }
 
 end
