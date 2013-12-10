@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe MenuRails::Menu do
 
-  it { described_class.should respond_to(:all_in_file, :get_menu_by_mid)                                }
-  it { described_class.all_in_file.should_not be_nil                                                    }
-  it { described_class.all_in_file.should include(:client, :admin)                                      }
+  it { described_class.should respond_to(:get_menu_by_mid)                                              }
   it { described_class.get_menu_by_mid(:client).should be_an_instance_of described_class                }
   it { -> {described_class.get_menu_by_mid(:not_exist)}.should raise_error ActiveRecord::RecordNotFound }
 
@@ -17,6 +15,5 @@ describe MenuRails::Menu do
   it { menu.should respond_to(:menu_items, :mid)                                                        }
   it { menu.menu_items.should respond_to(:size, :each)                                                  }
   it { menu.mid.should be_a_kind_of Symbol                                                              }
-  it { pending }
 
 end
