@@ -1,16 +1,21 @@
 require 'activerecord-tableless'
+require 'symbolize'
 
 module MenuRails
 
-  CONFIG_PATH = Rails.root.join('config', 'menu-rails.yml')
+  CONFIG_PATH = Rails.root.join('config', 'menu-rails.yml').freeze
 
   class Menu < ActiveRecord::Base
+    include Symbolize::ActiveRecord
+    
     has_no_table
 
     # Stands for MenuID
     column :mid, :string
 
     has_many :menu_items
+
+    symbolize :mid
 
     def find_by_mid(identifier)
       base_menu = self.class.all_in_file[identifier]
@@ -29,6 +34,12 @@ module MenuRails
 
       @@all_in_file
     end
+
+    private
+
+      def create_menu_items_from_yaml_data(data)
+
+      end
     
   end
 
