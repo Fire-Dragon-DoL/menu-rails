@@ -4,7 +4,7 @@ describe MenuRails::Menu do
 
   it { described_class.should respond_to(:get_menu_by_mid)                                              }
   it { described_class.get_menu_by_mid(:client).should be_an_instance_of described_class                }
-  it { -> {described_class.get_menu_by_mid(:not_exist)}.should raise_error ActiveRecord::RecordNotFound }
+  it { described_class.get_menu_by_mid(:not_exist).should be_nil                                        }
 
   it "has a valid factory" do
     -> {FactoryGirl.build(:menu)}.should_not raise_error

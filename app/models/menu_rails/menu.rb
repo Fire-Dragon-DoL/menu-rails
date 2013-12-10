@@ -30,24 +30,21 @@ module MenuRails
 
       def get_menu_by_mid(identifier)
         SEMAPHORE.synchronize do
-          base_menu = all_in_file[identifier]
+          if @menu_by_mid.nil?
+            base_menu = YAML::load_file(CONFIG_PATH).with_indifferent_access[:menu_rails]
+            @menu_by_mid = {}
 
-          if base_menu.nil?
-            raise ActiveRecord::RecordNotFound.new("No menu found with mid: #{ identifier }")
-          else
-            @menu_by_mid                    ||= {}
-            @menu_by_mid[identifier.to_sym] ||= build_menu_from_yaml_data(identifier, all_in_file[identifier])
+            base_menu.each_key do |menu_identifier|
+              @menu_by_mid[menu_identifier.to_sym] = build_menu_from_yaml_data(menu_identifier,
+                                                                               base_menu[menu_identifier])
+            end
           end
+
+          @menu_by_mid[identifier.to_sym]
         end
       end
 
       private
-
-        def all_in_file
-          return @all_in_file if defined? @all_in_file
-
-          @all_in_file = YAML::load_file(CONFIG_PATH).with_indifferent_access[:menu_rails]
-        end
 
         def build_menu_from_yaml_data(identifier, data)
           new(mid: identifier).build_menu_items_from_yaml_data!(data)
