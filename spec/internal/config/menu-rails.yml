@@ -1,9 +1,12 @@
 menu_rails:
   client:
     menu_items:
-      - miid: :home
+      - mriid: :home
         text: Home
-  # admin:
+  admin:
+    menu_items:
+      - mriid: :home
+        text: Home
   # app_config:
   # client:
   #   menu:

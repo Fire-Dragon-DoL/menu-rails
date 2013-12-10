@@ -8,12 +8,14 @@ module MenuRails
 
     has_no_table
 
-    column :miid, :string
-    column :text, :string
+    column :menu_id, :integer
+    # Stands for MenuRails Item ID
+    column :mriid,   :string
+    column :text,    :string
     
     belongs_to :menu
 
-    symbolize :miid
+    symbolize :mriid
     
   end
 
