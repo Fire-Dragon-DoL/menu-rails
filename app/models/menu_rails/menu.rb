@@ -7,7 +7,7 @@ module MenuRails
 
   class Menu < ActiveRecord::Base
     include Symbolize::ActiveRecord
-    
+
     has_no_table
 
     # Stands for MenuID
@@ -17,13 +17,20 @@ module MenuRails
 
     symbolize :mid
 
-    def find_by_mid(identifier)
-      base_menu = self.class.all_in_file[identifier]
+    def build_menu_items_from_yaml_data!(data)
+
+      # Chaining
+      self
+    end
+
+    def self.get_menu_by_mid(identifier)
+      base_menu = all_in_file[identifier]
 
       if base_menu.nil?
         raise ActiveRecord::RecordNotFound.new("No menu found with mid: #{ identifier }")
       else
-        Menu.new(mid: identifier)
+        @@menu_by_mid                    ||= {}
+        @@menu_by_mid[identifier.to_sym] ||= build_menu_from_yaml_data(identifier, all_in_file[identifier])
       end
     end
 
@@ -35,11 +42,9 @@ module MenuRails
       @@all_in_file
     end
 
-    private
-
-      def create_menu_items_from_yaml_data(data)
-
-      end
+    def self.build_menu_from_yaml_data(identifier, data)
+      new(mid: identifier).build_menu_items_from_yaml_data!(data)
+    end
     
   end
 
