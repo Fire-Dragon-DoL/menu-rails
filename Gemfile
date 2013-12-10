@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 gemspec
 
 group :test do
+  gem 'sqlite3',      '~> 1.3.8'
+  gem 'activerecord', '~> 4.0.1'
   gem 'actionpack',   '~> 4.0.1'
   gem 'rspec-rails',  '~> 2.14', require: false
 end  

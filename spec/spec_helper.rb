@@ -5,7 +5,8 @@ require 'combustion'
 require 'headless'
 require 'capybara/rspec'
 
-Combustion.initialize! :action_controller,
+Combustion.initialize! :active_record,
+                       :action_controller,
                        :action_view
 
 Bundler.require(:default, :development, :test)

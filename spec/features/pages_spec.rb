@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'active_support/all'
 
 def menu_rails
-  @menu_rails ||= YAML::load_file(Rails.root.join('config', 'menu-rails.yml')).with_indifferent_access[:menu_rails]
+  @menu_rails ||= YAML::load_file(MenuRails::CONFIG_PATH).with_indifferent_access[:menu_rails]
 end
 
 feature "Menu generation" do

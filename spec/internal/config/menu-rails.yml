@@ -1,5 +1,8 @@
 menu_rails:
-  - text: Home
+  client:
+    menu_items:
+      - text: Home
+  admin: ~
   # app_config:
   # client:
   #   menu:

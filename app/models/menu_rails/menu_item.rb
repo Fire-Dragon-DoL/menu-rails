@@ -1,8 +1,11 @@
 module MenuRails
 
-  class MenuItem
+  class MenuItem < ActiveRecord::Base
+    has_no_table
 
-    attr_accessor :text
+    column :text, :string
+    
+    belongs_to :menu
     
   end
 
