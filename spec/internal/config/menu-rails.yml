@@ -1,8 +1,9 @@
 menu_rails:
   client:
     menu_items:
-      - text: Home
-  admin: ~
+      - miid: :home
+        text: Home
+  # admin:
   # app_config:
   # client:
   #   menu:

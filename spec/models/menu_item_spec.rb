@@ -8,7 +8,8 @@ describe MenuRails::MenuItem do
   
   let(:menu_item) { FactoryGirl.build(:menu_item) }
 
-  it { menu_item.should respond_to( :text,
-                                    :menu ) }
+  it { menu_item.should respond_to(:miid, :text, :menu) }
+  it { menu_item.text.should be_an_instance_of String   }
+  it { menu_item.miid.should be_an_instance_of Symbol   }
 
 end

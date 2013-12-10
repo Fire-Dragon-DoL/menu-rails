@@ -18,11 +18,16 @@ module MenuRails
 
     symbolize :mid
 
-    def build_menu_items_from_yaml_data!(data)
+    private
 
-      # Chaining
-      self
-    end
+      def build_menu_items_from_yaml_data!(menu_items_data)
+        menu_items_data.each do |menu_item_data|
+          self.menu_items << MenuItem.new(menu_item_data)
+        end
+
+        # Chaining
+        self
+      end
 
     class << self
 
@@ -35,20 +40,15 @@ module MenuRails
             @menu_by_mid = {}
 
             base_menu.each_key do |menu_identifier|
-              @menu_by_mid[menu_identifier.to_sym] = build_menu_from_yaml_data(menu_identifier,
-                                                                               base_menu[menu_identifier])
+              mid_sym = menu_identifier.to_sym
+              @menu_by_mid[mid_sym] = new(mid: identifier).send( :build_menu_items_from_yaml_data!,
+                                                                 base_menu[mid_sym][:menu_items] )
             end
           end
 
           @menu_by_mid[identifier.to_sym]
         end
       end
-
-      private
-
-        def build_menu_from_yaml_data(identifier, data)
-          new(mid: identifier).build_menu_items_from_yaml_data!(data)
-        end
 
     end
     

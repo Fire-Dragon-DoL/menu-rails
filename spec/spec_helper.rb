@@ -7,7 +7,9 @@ require 'capybara/rspec'
 
 Combustion.initialize! :active_record,
                        :action_controller,
-                       :action_view
+                       :action_view do
+  config.i18n.enforce_available_locales = false
+end
 
 Bundler.require(:default, :development, :test)
 
