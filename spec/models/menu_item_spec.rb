@@ -16,7 +16,8 @@ describe MenuRails::MenuItem do
     let(:menu)      { MenuRails::Menu.get_menu_by_mrid(:client) }
     let(:menu_item) { menu.menu_items.first                     }
 
-    it { menu_item.menu.should be menu }
+    it { menu_item.menu.should be menu                          }
+    it { menu.get_menu_item_by_mriid(:home).should be menu_item }
 
   end
 

@@ -23,5 +23,6 @@ describe MenuRails::Menu do
   it { menu.menu_items.should respond_to(:size, :each) }
   it { menu.mrid.should be_a_kind_of Symbol            }
   it { menu.menu_items.first.text.should match 'Home'  }
+  it { menu.all_menu_items.should be menu.menu_items   }
 
 end

@@ -18,11 +18,19 @@ module MenuRails
 
     symbolize :mrid
 
+    def get_menu_item_by_mriid(identifier)
+      self.menu_items.select{ |menu_item| menu_item.mriid == identifier.to_sym }.first
+    end
+
+    def all_menu_items
+      self.menu_items
+    end
+
     private
 
       def build_menu_items_from_yaml_data!(menu_items_data)
         menu_items_data.each do |menu_item_data|
-          menu_item        = MenuItem.new(menu_item_data)
+          menu_item        = MenuItem.new(menu_item_data.values.first.merge(mriid: menu_item_data.keys.first.to_sym))
           menu_item.menu   = self
           self.menu_items << menu_item
         end

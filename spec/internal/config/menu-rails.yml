@@ -1,12 +1,12 @@
 menu_rails:
   client:
     menu_items:
-      - mriid: :home
-        text: Home
+      - home:
+          text: Home
   admin:
     menu_items:
-      - mriid: :home
-        text: Home
+      - home:
+          text: Home
   # app_config:
   # client:
   #   menu:

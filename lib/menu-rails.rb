@@ -1,7 +1,5 @@
-require "menu-rails/version"
-
-module MenuRails
-end
+require 'menu-rails/version'
+require 'menu-rails/helpers'
 
 # load Rails/Railtie
 begin
