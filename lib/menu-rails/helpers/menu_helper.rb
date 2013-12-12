@@ -7,7 +7,7 @@ module MenuRails::Helpers
     end
 
     def menu_rails_item(menu_item)
-      menu_item.text
+      yield(menu_item.text)
     end
 
   end

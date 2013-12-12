@@ -1,5 +1,7 @@
 Capybara working correctly
 
 <% menu_rails_each @menu do |menu_item| %>
-  <%= menu_rails_item menu_item %>
+  <% menu_rails_item menu_item do |menu_text| %>
+    <%= menu_text %>
+  <% end %>
 <% end %>
