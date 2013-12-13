@@ -6,6 +6,7 @@ module MenuRails
 
   class MenuItem < ActiveRecord::Base
     include Symbolize::ActiveRecord
+    include Rails.application.routes.url_helpers
 
     has_no_table
 
@@ -33,7 +34,7 @@ module MenuRails
     end
 
     def url
-      self.url_text.nil? ? self.url_method : self.url_text
+      self.url_text.nil? ? send(self.url_method) : url_for(self.url_text)
     end
 
     def authorization=(value)

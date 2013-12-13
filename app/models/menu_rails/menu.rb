@@ -30,18 +30,10 @@ module MenuRails
 
       def build_menu_items_from_yaml_data!(menu_items_data)
         menu_items_data.each do |menu_item_data|
-          menu_item_params   = menu_item_data.values.first.merge(mriid: menu_item_data.keys.first.to_sym)
-          # authorization      = menu_item_params.delete(:authorization)
-          # url                = menu_item_params.delete(:url)
-
-          # unless authorization.nil?
-          #   menu_item_params[:authorization_can]        = authorization[:can]
-          #   menu_item_params[:authorization_class_name] = authorization[:class_name]
-          # end
-
-          menu_item          = MenuItem.new(menu_item_params)
-          menu_item.menu     = self
-          self.menu_items   << menu_item
+          menu_item_params  = menu_item_data.values.first.merge(mriid: menu_item_data.keys.first.to_sym)
+          menu_item         = MenuItem.new(menu_item_params)
+          menu_item.menu    = self
+          self.menu_items  << menu_item
         end
         self.menu_items.freeze
 

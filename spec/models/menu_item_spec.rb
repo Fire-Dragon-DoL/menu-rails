@@ -28,10 +28,10 @@ describe MenuRails::MenuItem do
 
     it { first_menu_item.menu.should be menu                                                    }
     it { first_menu_item.authorization.should == { can: :read, class_name: 'PagesController' }  }
-    it { first_menu_item.url.should be_an_instance_of Symbol                                    }
+    it { first_menu_item.url.should == '/'                                                      }
 
     it { second_menu_item.authorization.should be nil                                           }
-    it { second_menu_item.url.should be_an_instance_of String                                   }
+    it { second_menu_item.url.should == second_menu_item.url_text                               }
 
   end
 
