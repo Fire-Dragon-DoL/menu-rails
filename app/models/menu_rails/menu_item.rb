@@ -25,6 +25,10 @@ module MenuRails
 
       { can: self.authorization_can, class_name: self.authorization_class_name }
     end
+
+    def to_s
+      self.text
+    end
     
   end
 
