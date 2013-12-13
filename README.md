@@ -2,6 +2,20 @@
 
 TODO: Write a gem description
 
+## Interface
+
+`Menu` must respond to:
+
+- `all_menu_items` with an array of all `MenuItem`s
+
+`MenuItem` must respond to:
+
+- `url` which should return a string (will be an url)
+- `text` which should return a string (text displayed for user)
+- `authorization` should return `nil` (will be displayed without checking through `can?`) or a hash like this:
+  `{ can: :read, class_name: 'ApplicationController' }` which will be used in `can?` method (view) and if false, will
+  skip the item
+
 ## Installation
 
 Add this line to your application's Gemfile:
