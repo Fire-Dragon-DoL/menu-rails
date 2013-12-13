@@ -3,17 +3,20 @@ menu_rails:
     menu_items:
       - home:
           text: Home
+          url:  :root_path
           authorization:
             can:        :read
             class_name: PagesController
       - about:
           text: About
+          url:  "http://www.myrandomurl.com/"
           authorization:
             class_name: MissingCanKey
   admin:
     menu_items:
       - home:
           text: Home
+          url:  :root_path
   # app_config:
   # client:
   #   menu:

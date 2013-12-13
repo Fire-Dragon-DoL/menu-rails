@@ -15,10 +15,31 @@ module MenuRails
     column :text,                     :string
     column :authorization_can,        :string
     column :authorization_class_name, :string
+    column :url_method,               :string
+    column :url_text,                 :string
     
     belongs_to :menu
 
-    symbolize :mriid, :authorization_can
+    symbolize :mriid, :authorization_can, :url_method
+
+    def url=(value)
+      if value.kind_of? String
+        self.url_text   = value
+      elsif value.kind_of? Symbol
+        self.url_method = value
+      else
+        raise 'Invalid type for url'
+      end
+    end
+
+    def url
+      self.url_text.nil? ? self.url_method : self.url_text
+    end
+
+    def authorization=(value)
+      self.authorization_can        = value[:can]
+      self.authorization_class_name = value[:class_name]
+    end
 
     def authorization
       return nil if self.authorization_can.nil? || self.authorization_class_name.blank?
