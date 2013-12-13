@@ -1,7 +1,7 @@
 Capybara working correctly
 
 <div id="menu">
-  <% menu_rails(@menu) do |menu_item| %>
-    <%= menu_item %>
+  <% menu_rails_each(@menu) do |menu_item| %>
+    <%= link_to(menu_item.to_s, menu_item.url, class: menu_item.active? ? ['is-active'] : []) %>
   <% end %>
 </div>

@@ -12,9 +12,17 @@ menu_rails:
           url:  "http://www.myrandomurl.com/"
           authorization:
             class_name: MissingCanKey
+          active:
+            # Don't care
+            controller_only: true
       - about:
           text: About
           url:  :about_path
+      - dummy1:
+          text: Dummy1
+          url:  :dummy1_path
+          active:
+            method: :always_inactive
       - not_visible:
           text: Not visible
           url:  :root_path

@@ -8,7 +8,8 @@ require 'capybara/rspec'
 Combustion.initialize! :active_record,
                        :action_controller,
                        :action_view do
-  config.i18n.enforce_available_locales = false
+  config.i18n.enforce_available_locales   = false
+  config.menu_rails.menu_item_class_name = 'DummyMenuItem'
 end
 
 Bundler.require(:default, :development, :test)

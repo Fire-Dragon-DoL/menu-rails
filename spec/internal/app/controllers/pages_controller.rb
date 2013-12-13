@@ -6,5 +6,8 @@ class PagesController < ApplicationController
 
   def about
   end
+
+  def dummy1
+  end
   
 end

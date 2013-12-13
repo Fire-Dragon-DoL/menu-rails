@@ -4,6 +4,8 @@ module MenuRails #:nodoc:
   class Engine < ::Rails::Engine #:nodoc:
     isolate_namespace MenuRails
 
+    config.menu_rails = MenuRails
+
     initializer "menu-rails.helpers" do
       ActiveSupport.on_load(:action_view) do
         include MenuRails::Helpers::MenuHelper

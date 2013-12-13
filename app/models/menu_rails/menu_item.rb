@@ -18,10 +18,12 @@ module MenuRails
     column :authorization_class_name, :string
     column :url_method,               :string
     column :url_text,                 :string
+    column :active_controller_only,   :boolean
+    column :active_method,            :string
     
     belongs_to :menu
 
-    symbolize :mriid, :authorization_can, :url_method
+    symbolize :mriid, :authorization_can, :url_method, :active_method
 
     validates :text,       presence: true
     validates :url_method, presence: { if: -> { self.url_text.blank?   } }
@@ -36,7 +38,7 @@ module MenuRails
     end
 
     def url
-      self.url_text.nil? ? send(self.url_method) : url_for(self.url_text)
+      self.url_is_string? ? url_for(self.url_text) : send(self.url_method)
     end
 
     def authorization=(value)
@@ -50,21 +52,35 @@ module MenuRails
       { can: self.authorization_can, class_name: self.authorization_class_name }
     end
 
-    def active?
-      return false if url_is_string?
-      
-      self.menu.controller.controller_name == Rails.application.routes.recognize_path(self.url)[:controller]
+    def active=(value)
+      self.active_controller_only = value[:controller_only]
+      self.active_method          = value[:method]
     end
+
+    def active?
+      return send(self.active_method) unless self.active_method.nil?
+      return false if self.url_is_string?
+
+      result = self.menu.controller.controller_name == Rails.application.routes.recognize_path(self.url)[:controller]
+      unless self.active_controller_only?
+        result &&= self.menu.controller.action_name == Rails.application.routes.recognize_path(self.url)[:action]
+      end
+
+      result
+    end
+
+    # TODO: Move into a config file which class for MenuItem will be created, must inherit from MenuItem
+    # def always_inactive
+    #   false
+    # end
 
     def to_s
       self.text
     end
 
-    private
-
-      def url_is_string?
-        !self.url_method.nil?
-      end
+    def url_is_string?
+      self.url_method.nil?
+    end
     
   end
 

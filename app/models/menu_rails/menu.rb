@@ -32,7 +32,7 @@ module MenuRails
       def build_menu_items_from_yaml_data!(menu_items_data)
         menu_items_data.each do |menu_item_data|
           menu_item_params  = menu_item_data.values.first.merge(mriid: menu_item_data.keys.first.to_sym)
-          menu_item         = MenuItem.new(menu_item_params)
+          menu_item         = menu_item_class.new(menu_item_params)
           menu_item.menu    = self
           self.menu_items  << menu_item
         end
@@ -40,6 +40,10 @@ module MenuRails
 
         # Chaining
         self
+      end
+
+      def menu_item_class
+        Rails.application.config.menu_rails.menu_item_class_name.constantize
       end
 
     class << self
@@ -54,13 +58,20 @@ module MenuRails
 
             base_menu.each do |menu_identifier, menu|
               mid_sym                = menu_identifier.to_sym
-              @menu_by_mrid[mid_sym] = new(mrid: mid_sym).send(:build_menu_items_from_yaml_data!, menu[:menu_items]).freeze
+              @menu_by_mrid[mid_sym] = menu_class.new(mrid: mid_sym).send( :build_menu_items_from_yaml_data!,
+                                                                           menu[:menu_items] ).freeze
             end
           end
 
           @menu_by_mrid[identifier.to_sym]
         end
       end
+
+      private
+
+        def menu_class
+          Rails.application.config.menu_rails.menu_class_name.constantize
+        end
 
     end
     
