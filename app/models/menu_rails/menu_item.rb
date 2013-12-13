@@ -69,11 +69,6 @@ module MenuRails
       result
     end
 
-    # TODO: Move into a config file which class for MenuItem will be created, must inherit from MenuItem
-    # def always_inactive
-    #   false
-    # end
-
     def to_s
       self.text
     end
