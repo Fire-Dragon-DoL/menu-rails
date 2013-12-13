@@ -15,7 +15,7 @@ feature "Menu generation" do
       ['Home', 'About'].each do |menu_rails_item|
         scenario "Print #{ menu_rails_item } menu item" do
           visit root_path
-
+          
           page.should have_content(menu_rails_item)
         end
       end

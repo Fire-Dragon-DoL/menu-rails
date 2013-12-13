@@ -7,11 +7,14 @@ menu_rails:
           authorization:
             can:        :read
             class_name: PagesController
-      - about:
-          text: About
+      - contact:
+          text: Contact
           url:  "http://www.myrandomurl.com/"
           authorization:
             class_name: MissingCanKey
+      - about:
+          text: About
+          url:  :about_path
       - not_visible:
           text: Not visible
           url:  :root_path

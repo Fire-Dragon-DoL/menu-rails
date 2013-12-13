@@ -50,9 +50,21 @@ module MenuRails
       { can: self.authorization_can, class_name: self.authorization_class_name }
     end
 
+    def active?
+      return false if url_is_string?
+      
+      self.menu.controller.controller_name == Rails.application.routes.recognize_path(self.url)[:controller]
+    end
+
     def to_s
       self.text
     end
+
+    private
+
+      def url_is_string?
+        !self.url_method.nil?
+      end
     
   end
 

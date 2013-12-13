@@ -8,6 +8,7 @@ module MenuRails
 
   class Menu < ActiveRecord::Base
     include Symbolize::ActiveRecord
+    include MenuRails::BaseMenu
 
     has_no_table
 

@@ -26,4 +26,15 @@ describe MenuRails::Menu do
   it { menu.menu_items.first.text.should == 'Home'     }
   it { menu.all_menu_items.should be menu.menu_items   }
 
+  it "uses given instance as controller while displaying in controller" do
+    fake_controller = double('Fake controller')
+    used_controller = nil
+
+    menu.display_for_controller(fake_controller) do
+      used_controller = menu.controller
+    end
+
+    used_controller.should be fake_controller
+  end
+
 end
