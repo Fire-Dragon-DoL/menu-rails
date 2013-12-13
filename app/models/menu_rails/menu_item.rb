@@ -1,5 +1,6 @@
 require 'activerecord-tableless'
 require 'symbolize'
+require 'active_support/all'
 
 module MenuRails
 
@@ -8,14 +9,22 @@ module MenuRails
 
     has_no_table
 
-    column :menu_id, :integer
+    column :menu_id,                  :integer
     # Stands for MenuRails Item ID
-    column :mriid,   :string
-    column :text,    :string
+    column :mriid,                    :string
+    column :text,                     :string
+    column :authorization_can,        :string
+    column :authorization_class_name, :string
     
     belongs_to :menu
 
-    symbolize :mriid
+    symbolize :mriid, :authorization_can
+
+    def authorization
+      return nil if self.authorization_can.nil? || self.authorization_class_name.blank?
+
+      { can: self.authorization_can, class_name: self.authorization_class_name }
+    end
     
   end
 

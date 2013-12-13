@@ -3,6 +3,13 @@ menu_rails:
     menu_items:
       - home:
           text: Home
+          authorization:
+            can:        :read
+            class_name: PagesController
+      - about:
+          text: About
+          authorization:
+            class_name: MissingCanKey
   admin:
     menu_items:
       - home:
