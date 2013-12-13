@@ -12,6 +12,12 @@ menu_rails:
           url:  "http://www.myrandomurl.com/"
           authorization:
             class_name: MissingCanKey
+      - not_visible:
+          text: Not visible
+          url:  :root_path
+          authorization:
+            can:        :read
+            class_name: NotVisibleController
   admin:
     menu_items:
       - home:

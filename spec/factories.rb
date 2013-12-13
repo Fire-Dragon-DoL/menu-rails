@@ -8,7 +8,8 @@ FactoryGirl.define do
 
   factory :menu_item, class: MenuRails::MenuItem do
     sequence(:mriid) { |n| "menu_item_#{ n }" }
-    text             { Faker::Lorem.word }
+    text             { Faker::Lorem.word      }
+    url              { Faker::Internet.url    }
     # name { Faker::Name.first_name }
 
     # factory :dummy_invalid do

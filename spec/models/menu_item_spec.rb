@@ -5,7 +5,10 @@ describe MenuRails::MenuItem do
   it "has a valid factory" do
     -> {FactoryGirl.build(:menu_item)}.should_not raise_error
   end
-  
+
+  it { FactoryGirl.build(:menu_item, text: 'Dummy', url: 'http://dummy.com/').should be_valid }
+  it { FactoryGirl.build(:menu_item, url: nil).should_not be_valid                            }
+
   let(:menu_item) { FactoryGirl.build(:menu_item) }
 
   it do
@@ -24,14 +27,14 @@ describe MenuRails::MenuItem do
     let(:first_menu_item)  { menu.all_menu_items.first                 }
     let(:second_menu_item) { menu.all_menu_items.second                }
 
-    it { menu.get_menu_item_by_mriid(:home).should be first_menu_item                           }
+    it { menu.get_menu_item_by_mriid(:home).should be first_menu_item                          }
 
-    it { first_menu_item.menu.should be menu                                                    }
-    it { first_menu_item.authorization.should == { can: :read, class_name: 'PagesController' }  }
-    it { first_menu_item.url.should == '/'                                                      }
+    it { first_menu_item.menu.should be menu                                                   }
+    it { first_menu_item.authorization.should == { can: :read, class_name: 'PagesController' } }
+    it { first_menu_item.url.should == '/'                                                     }
 
-    it { second_menu_item.authorization.should be nil                                           }
-    it { second_menu_item.url.should == second_menu_item.url_text                               }
+    it { second_menu_item.authorization.should be nil                                          }
+    it { second_menu_item.url.should == second_menu_item.url_text                              }
 
   end
 

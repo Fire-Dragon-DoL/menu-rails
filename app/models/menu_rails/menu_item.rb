@@ -23,13 +23,15 @@ module MenuRails
 
     symbolize :mriid, :authorization_can, :url_method
 
+    validates :text,       presence: true
+    validates :url_method, presence: { if: -> { self.url_text.blank?   } }
+    validates :url_text,   presence: { if: -> { self.url_method.blank? } }
+
     def url=(value)
       if value.kind_of? String
         self.url_text   = value
       elsif value.kind_of? Symbol
         self.url_method = value
-      else
-        raise 'Invalid type for url'
       end
     end
 

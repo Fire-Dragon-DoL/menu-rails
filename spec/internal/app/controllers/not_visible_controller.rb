@@ -1,0 +1,2 @@
+class NotVisibleController < ApplicationController  
+end
