@@ -40,4 +40,12 @@ describe MenuRails::MenuItem do
 
   end
 
+  context "with menu :custom_class_menu as parent" do
+    let(:menu)             { MenuRails::Menu.get_menu_by_mrid(:custom_class_menu) }
+    let(:first_menu_item)  { menu.all_menu_items.first                            }
+
+    it { menu.should be_an_instance_of SecondDummyMenu                }
+    it { first_menu_item.should be_an_instance_of SecondDummyMenuItem }
+  end
+
 end

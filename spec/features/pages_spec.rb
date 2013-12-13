@@ -33,14 +33,10 @@ feature "Menu generation" do
       find('#menu a.is-active').should have_content('Home')
     end
 
-    context "with custom MenuItem" do
+    scenario "Dummy1 active? not called, instead it's called always_inactive" do
+      menu.get_menu_item_by_mriid(:dummy1).should_receive(:always_inactive).with(no_args).and_call_original
 
-      scenario "Dumm1 active? not called, instead it's called always_inactive" do
-        menu.get_menu_item_by_mriid(:dummy1).should_receive(:always_inactive).with(no_args).and_call_original
-
-        visit root_path
-      end
-
+      visit root_path
     end
 
   end

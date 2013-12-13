@@ -31,10 +31,16 @@ module MenuRails
 
       def build_menu_items_from_yaml_data!(menu_items_data)
         menu_items_data.each do |menu_item_data|
-          menu_item_params  = menu_item_data.values.first.merge(mriid: menu_item_data.keys.first.to_sym)
-          menu_item         = menu_item_class.new(menu_item_params)
-          menu_item.menu    = self
-          self.menu_items  << menu_item
+          menu_item_params          = menu_item_data.values.first.merge(mriid: menu_item_data.keys.first.to_sym)
+          overwrite_menu_item_class = menu_item_params.delete(:class_name)
+          if overwrite_menu_item_class.nil?
+            overwrite_menu_item_class = menu_item_class
+          else
+            overwrite_menu_item_class = overwrite_menu_item_class.constantize
+          end
+          menu_item                 = overwrite_menu_item_class.new(menu_item_params)
+          menu_item.menu            = self
+          self.menu_items          << menu_item
         end
         self.menu_items.freeze
 
@@ -58,8 +64,10 @@ module MenuRails
 
             base_menu.each do |menu_identifier, menu|
               mid_sym                = menu_identifier.to_sym
-              @menu_by_mrid[mid_sym] = menu_class.new(mrid: mid_sym).send( :build_menu_items_from_yaml_data!,
-                                                                           menu[:menu_items] ).freeze
+              overwrite_menu_class   = menu.delete(:class_name)
+              overwrite_menu_class   = overwrite_menu_class.nil? ? menu_class : overwrite_menu_class.constantize
+              @menu_by_mrid[mid_sym] = overwrite_menu_class.new(mrid: mid_sym).send( :build_menu_items_from_yaml_data!,
+                                                                                     menu[:menu_items] ).freeze
             end
           end
 
